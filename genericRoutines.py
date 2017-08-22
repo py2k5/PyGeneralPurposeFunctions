@@ -15,6 +15,9 @@ def fibonacci_by_generator(num):
        print(item)
 """
 
+"""print the number and its count in a list in order of their appearances
+example : [ 1,2,3,3,2,3,4,2,1] => 1:2,2:3,3:3,4:1 
+"""
 def countOccurancesInList(inp_list):
     s=set()
     for x in inp_list:
