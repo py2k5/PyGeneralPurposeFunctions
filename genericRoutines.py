@@ -64,3 +64,19 @@ def invert_dict(m):
 m = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 invert_dict(m)
 #####################################################################################################################  
+"""Flateen a multidimensional list to one dimensional list 
+   for example: [[1, 2, 3], [4, 5, 6], [7, 8, 9]] => [1, 2, 3, 4, 5, 6, 7, 8, 9]
+"""
+def flatten_list(l):
+
+    ##method 1 using comprehension
+    res = [ item for row in l for item in row ]
+    print(res)
+    ##method 2 using loop
+    res = []
+    for row in l:
+        for item in row:
+            res.append(item)
+
+    print(res)
+    
