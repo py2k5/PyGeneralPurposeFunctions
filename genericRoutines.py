@@ -79,4 +79,23 @@ def flatten_list(l):
             res.append(item)
 
     print(res)
-    
+#####################################################################################################################      
+"""create a list of anagrams from a list of strings 
+For example:  ['eat', 'ate', 'done', 'tea', 'soup', 'node']
+           => [['done', 'node'], ['eat', 'ate', 'tea'], ['soup']]
+"""        
+def anagram(words):
+    anagrams = {}
+    for word in words:
+        sword = ''.join(sorted(word))
+        try:
+            anagrams[sword].append(word)
+        except KeyError:
+            anagrams[sword] = [word]
+    anagrams_list = [v for v in anagrams.values() ]
+    print(anagrams_list)
+
+words = ['eat', 'ate', 'done', 'tea', 'soup', 'node']
+anagram(words)
+#####################################################################################################################     
+
