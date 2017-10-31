@@ -15,8 +15,21 @@ class LinkedList:
                 self.head.next = temp
                 del temp
 
-        def delete(self):
-                pass
+        def delete(self,data):
+                if self.head is None:
+                        print("Nothing to delete")
+                        return
+                current  = self.head
+                previous = self.head
+                while True:
+                        if current is None:
+                                break
+                        if current.data == data:
+                            previous.next = current.next
+
+                        previous = current
+                        current = current.next
+
         def printList(self):
                 if self.head is None:
                         print("List is empty")
@@ -31,7 +44,18 @@ class LinkedList:
 
 n1 = Node(10)
 ll = LinkedList()
+ll.delete(90)
 ll.insert(n1)
 n2 = Node(20)
 ll.insert(n2)
+n2 = Node(30)
+ll.insert(n2)
+n2 = Node(30)
+ll.insert(n2)
+n2 = Node(50)
+ll.insert(n2)
+print("Before delete")
+ll.printList()
+ll.delete(90)
+print("after delete")
 ll.printList()
