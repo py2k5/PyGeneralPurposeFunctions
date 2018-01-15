@@ -34,6 +34,18 @@ def countOccurancesInList(inp_list):
 """test the function
 countOccurancesInList([1,2,3,4,3,2,3,5,6,2,3,5,2,4,6,32,5,1,43,32,2,3,4,21,1,2,4,45,32,1,3,0])
 """
+
+############### OR ###############
+def countOccurancesInList(l):
+    d = {}
+    for item in l:
+        if item in d:
+            d[item] = d[item] + 1
+        else:
+            d[item] = 1
+
+    print(d)
+
 #####################################################################################################################
 """Transpose a multidimensional list 
    for example -> [ [1,2,3],[4,5,6],[7,8,9] ]
