@@ -46,6 +46,18 @@ def countOccurancesInList(l):
 
     print(d)
 
+    ##OR
+    
+def countOccurancesInList(l):
+    d = {}
+    for item in l:
+        try:
+            d[item] = d[item] + 1
+        except:
+            d[item] = 1
+
+    print(d)
+
 #####################################################################################################################
 """Transpose a multidimensional list 
    for example -> [ [1,2,3],[4,5,6],[7,8,9] ]
