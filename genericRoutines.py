@@ -123,3 +123,21 @@ words = ['eat', 'ate', 'done', 'tea', 'soup', 'node']
 anagram(words)
 #####################################################################################################################     
 
+###Given a string, repeatedly remove adjacent pairs of matching characters and then print the reduced result.
+##aaabccddd → abccddd
+##abccddd → abddd
+##abddd → abd
+
+def super_reduced_string(s):
+    if not s:
+        return 'Empty String'
+    stack = ''
+    for i, c in enumerate(s):
+        if stack and stack[-1] == c:
+            stack = stack[:-1]
+        else:
+            stack += c
+    if stack:
+        return stack
+    return 'Empty String'
+print(super_reduced_string('aaabccddd')    )
