@@ -141,3 +141,18 @@ def super_reduced_string(s):
         return stack
     return 'Empty String'
 print(super_reduced_string('aaabccddd')    )
+
+OR
+
+def super_reduced_string(s):
+    stack = []
+    for i,c in enumerate(s):
+        if not stack or c != stack[-1]:
+            stack.append(c)
+        else:
+            stack.pop()
+    if stack:
+        return  ''.join(stack)
+    else:
+        return 'Empty String'
+print(super_reduced_string('aaabccddd')    )
