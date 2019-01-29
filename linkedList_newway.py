@@ -10,10 +10,10 @@ class LinkedList:
                 self.head = head
 
         def insert(self, newNode ):
-                temp = self.head
-                self.head = newNode
-                self.head.next = temp
-                del temp
+                temp = newNode
+                temp.next = self.head
+                self.head = temp
+                
 
         def delete(self,data):
                 if self.head is None:
