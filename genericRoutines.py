@@ -60,6 +60,16 @@ def countOccurancesInList(l):
             d[item] = 1
 
     print(d)
+    
+    
+    #OR
+    
+ def countOccurancesInList(l):
+    d = {}
+    for item in l:
+        d[item] = d.get(item, 0) + 1
+        
+    print(d)
 
 #####################################################################################################################
 """Transpose a multidimensional list 
