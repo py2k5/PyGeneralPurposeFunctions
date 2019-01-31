@@ -159,3 +159,25 @@ def super_reduced_string(s):
     else:
         return 'Empty String'
 print(super_reduced_string('aaabccddd')    )
+
+
+###########################################################################################################################
+#we want to write a program that takes a list of filenames as arguments and to print only the line which has a particular substring, 
+like grep command in unix.
+def readfiles(filenames):
+    for f in filenames:
+        with open(f) as fr:
+            for line in open(fr):
+                yield line
+
+def grep(pattern, lines):
+    return (line for line in lines if pattern in line)
+
+def printlines(lines):
+    for line in lines:
+        print(line)
+
+def main(pattern, filenames):
+    lines = readfiles(filenames)
+    lines = grep(pattern, lines)
+    printlines(lines)
