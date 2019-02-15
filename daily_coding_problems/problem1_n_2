@@ -1,0 +1,131 @@
+#####################################################################################################################################
+Problem 1
+#####################################################################################################################################
+Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+
+For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+
+Bonus: Can you do this in one pass?
+
+brut force solution: O(N^2)
+def two_sum(lst, k):
+    for i in range(len(lst)):
+        for j in range(len(lst)):
+            if i != j and lst[i] + lst[j] == k:
+                return True
+  return False
+  
+   OR
+   
+Another way is to use a set to remember the numbers we've seen so far. 
+Then for a given number, we can check if there is another number that, if added, would sum to k. 
+This would be O(N) since lookups of sets are O(1) each.
+def two_sum(lst, k):
+  seen = set()
+  for num in lst:
+      if k - num in seen:
+          return True
+      seen.add(num)
+  return False
+    
+     OR 
+Binary search solution     
+
+from bisect import bisect_left
+
+
+def two_sum(lst, K):
+    lst.sort()
+
+    for i in range(len(lst)):
+        target = K - lst[i]
+        j = binary_search(lst, target)
+
+        # Check that binary search found the target and that it's not in the same index
+        # as i. If it is in the same index, we can check lst[i + 1] and lst[i - 1] to see
+        #  if there's another number that's the same value as lst[i].
+        if j == -1:
+            continue
+        elif j != i:
+            return True
+        elif j + 1 < len(lst) and lst[j + 1] == target:
+            return True
+        elif j - 1 >= 0 and lst[j - 1] == target:
+            return True
+    return False
+
+def binary_search(lst, target):
+    lo = 0
+    hi = len(lst)
+    ind = bisect_left(lst, target, lo, hi)
+
+    if 0 <= ind < hi and lst[ind] == target:
+        return ind
+    return -1
+    
+###################################################################################################################################
+#problem 2
+###################################################################################################################################
+This problem was asked by Uber.
+
+Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+
+For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+
+Follow-up: what if you can't use division?
+
+
+This problem would be easy with division: an optimal solution could just find the product of all numbers in the array and then divide by each of the numbers.
+
+Without division, another approach would be to first see that the ith element simply needs the product of numbers before i and the product of numbers after i. Then we could multiply those two numbers to get our desired product.
+
+In order to find the product of numbers before i, we can generate a list of prefix products. Specifically, the ith element in the list would be a product of all numbers including i. Similarly, we would generate the list of suffix products.
+#This runs in O(N) time and space, since iterating over the input arrays takes O(N) time and creating the prefix and suffix arrays take up O(N) space.
+
+#Solution by division:
+def products(lst):
+    full_multiple = 1
+    for x in lst:
+        full_multiple *= x
+    
+    result = []
+    for num in lst:
+        result.append(int(full_multiple/num))
+    
+    return result
+    
+    OR
+ 
+#solution by prefix and suffix multiplication 
+def products(nums):
+    # Generate prefix products
+    prefix_products = []
+    for num in nums:
+        if prefix_products:
+            prefix_products.append(prefix_products[-1] * num)
+        else:
+            prefix_products.append(num)
+
+    # Generate suffix products
+    suffix_products = []
+    for num in reversed(nums):
+        if suffix_products:
+            suffix_products.append(suffix_products[-1] * num)
+        else:
+            suffix_products.append(num)
+    suffix_products = list(reversed(suffix_products))
+
+    # Generate result
+    result = []
+    for i in range(len(nums)):
+        if i == 0:
+            result.append(suffix_products[i + 1])
+        elif i == len(nums) - 1:
+            result.append(prefix_products[i - 1])
+        else:
+            result.append(prefix_products[i - 1] * suffix_products[i + 1])
+    return result
+
+
+#input : product([1,2,3,4,5)
+#output: [120, 60, 40, 30, 24]
