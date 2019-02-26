@@ -7,3 +7,15 @@ def sumMethod(inputList):
         # subtract sum of full range from supplied range
         return fullSum - sum(inputList)
 print(sumMethod([1,2,3])) 
+
+
+
+OR
+
+def lookUpmethod(inputList):
+        s = set(inputList)
+        i = 1
+        while i in s:
+                i += 1
+        return i
+
