@@ -177,7 +177,7 @@ like grep command in unix.
 def readfiles(filenames):
     for f in filenames:
         with open(f) as fr:
-            for line in open(fr):
+            for line in fr:
                 yield line
 
 def grep(pattern, lines):
@@ -191,3 +191,24 @@ def main(pattern, filenames):
     lines = readfiles(filenames)
     lines = grep(pattern, lines)
     printlines(lines)
+    
+    
+#########################################################################################################################
+# Find the longest non repeating substring in a string
+def max_substring(string):
+   last_substring = ''
+   max_substring  = ''
+   for x in string:
+       k = find_index(x,last_substring)
+       last_substring = last_substring[(k+1):]+x
+       print(f'last substrin = {last_substring}')
+       if len(last_substring) > len(max_substring):
+               max_substring  = last_substring        
+   return max_substring
+def find_index(x, lst):
+   k = 0
+   while k <len(lst):
+      if lst[k] == x:
+         return k
+      k +=1
+   return -1
