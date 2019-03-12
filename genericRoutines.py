@@ -195,6 +195,8 @@ def main(pattern, filenames):
     
 #########################################################################################################################
 # Find the longest non repeating substring in a string
+#input 'pwwkew'
+#output 'wke'
 def max_substring(string):
    last_substring = ''
    max_substring  = ''
