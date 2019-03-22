@@ -83,11 +83,12 @@ In order to find the product of numbers before i, we can generate a list of pref
 #This runs in O(N) time and space, since iterating over the input arrays takes O(N) time and creating the prefix and suffix arrays take up O(N) space.
 
 #Solution by division:
+from functools import reduce
 def products(lst):
-    full_multiple = 1
-    for x in lst:
-        full_multiple *= x
-    
+    #full_multiple = 1
+    #for x in lst:
+    #    full_multiple *= x
+    full_multiple = reduce(lambda a,b: a*b, lst)
     result = []
     for num in lst:
         result.append(int(full_multiple/num))
