@@ -45,6 +45,7 @@ This runs in O(N) time and space.
 
 
 
+if __name__ == '__main__':
 ########
 root = Node('*')
 root.left = Node('+')
