@@ -22,14 +22,18 @@ def fibonacci_by_generator(num):
 """print the number and its count in a list in order of their appearances
 example : [ 1,2,3,3,2,3,4,2,1] => 1:2,2:3,3:3,4:1 
 """
-def countOccurancesInList(inp_list):
+def countOccurancesInList(inp_list=None):
     s=set()
+    res = []
     for x in inp_list:
+        #print(x)
+        print(f"current value is {x}")
         if x in s:
             pass
         else:
-    	    print("{}:{}".format(x,inp_list.count(x)), end=",")
-    	    s.add(x)
+            res.append("{}:{}".format(x,inp_list.count(x)))
+            s.add(x)
+    return ','.join(res)
 
 """test the function
 countOccurancesInList([1,2,3,4,3,2,3,5,6,2,3,5,2,4,6,32,5,1,43,32,2,3,4,21,1,2,4,45,32,1,3,0])
