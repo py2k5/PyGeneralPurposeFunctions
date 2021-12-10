@@ -218,3 +218,18 @@ def find_index(x, lst):
          return k
       k +=1
    return -1
+   
+   
+   
+###flatten any dimension list
+
+def flatten(items):
+    for x in items:
+        if isinstance(x, list):
+            for sub_x in flatten(x):
+                yield sub_x
+        else:
+            yield x
+
+
+print(list(flatten([1,2,3,[4,5,[6,7]]])))
