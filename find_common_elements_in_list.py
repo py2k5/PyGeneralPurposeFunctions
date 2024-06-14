@@ -33,3 +33,12 @@ list_c1 = [0, 1, 2, 3, 4, 5]
 list_c2 = [6, 7, 8, 9, 10, 11]
 print(common_elements(list_c1,list_c2))
 # common_elements(list_b1, list_b2) should return [] (an empty list).
+
+
+OR
+
+#Short one using comprehension
+def common_elements(list1, list2):
+    return [element for element in list1 if element in list2]
+
+print(common_elements(list_a1, list_a2))
