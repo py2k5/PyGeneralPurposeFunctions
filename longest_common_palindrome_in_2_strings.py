@@ -26,3 +26,17 @@ def longest_common_palindrome(s1, s2):
     return max_palindrome
 
 print(longest_common_palindrome('xysdjspottTOPSPOTdjhfbsdfajshbd','xysdjasdjhbatopTOPSPOTdjh'))
+
+####OR simple
+
+def longest_palindrome(s1, s2):
+    if len(s1) > len(s2):
+        s1, s2 = s2, s1
+    longest = ''
+    for i in range(len(s1)):
+        for j in range(i+1, len(s1)+1):
+            if s1[i:j] in s2 and len(s1[i:j]) > len(longest):
+                longest = s1[i:j]
+    return longest
+
+print(longest_palindrome('rabc', 'abacdfgdcaba')) #ab
